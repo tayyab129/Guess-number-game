@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Guess Number Game!</h1>
+        <p>Guess the number between 1 To 100</p>
+
+        <label for="guessInput">Enter Number.</label>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button onclick="checkGuess()">Check Guess</button>
+
+        <p id="result"></p>
+    </div>
+    <script>
+        // Seed the random number generator
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            let guessInput = document.getElementById("guessInput");
+            let guess = parseInt(guessInput.value);
+
+            // Check if the input is a valid number
+            if (isNaN(guess)) {
+                alert("Please enter a number.");
+                return;
+            }
+
+            attempts++;
+
+            let resultElement = document.getElementById("result");
+
+            if (guess > secretNumber) {
+                resultElement.textContent = "Too high! Try again.";
+            } else if (guess < secretNumber) {
+                resultElement.textContent = "Too low! Try again.";
+            } else {
+                resultElement.textContent = `Congratulations! You guessed the number in ${attempts} attempts.`;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
