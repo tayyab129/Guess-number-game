@@ -23,6 +23,7 @@
         // Seed the random number generator
         let secretNumber = Math.floor(Math.random() * 100) + 1;
         let attempts = 0;
+        const tolerance = 10; // You can adjust this value to set the tolerance range
 
         function checkGuess() {
             let guessInput = document.getElementById("guessInput");
@@ -38,15 +39,20 @@
 
             let resultElement = document.getElementById("result");
 
-            if (guess > secretNumber) {
+            if (Math.abs(guess - secretNumber) <= tolerance) {
+                resultElement.textContent = "You are near! Keep going.";
+            } else if (guess > secretNumber) {
                 resultElement.textContent = "Too high! Try again.";
-            } else if (guess < secretNumber) {
-                resultElement.textContent = "Too low! Try again.";
             } else {
+                resultElement.textContent = "Too low! Try again.";
+            }
+
+            if (guess === secretNumber) {
                 resultElement.textContent = `Congratulations! You guessed the number in ${attempts} attempts.`;
             }
         }
     </script>
+
 
 </body>
 
