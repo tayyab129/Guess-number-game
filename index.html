@@ -20,10 +20,12 @@
         <p id="result"></p>
     </div>
     <script>
+        // Seed the random number generator tolerance
+        const tolerance = Math.floor(Math.random() * 20) + 1;
+
         // Seed the random number generator
         let secretNumber = Math.floor(Math.random() * 100) + 1;
         let attempts = 0;
-        const tolerance = 5; // You can adjust this value to set the tolerance range
 
         function checkGuess() {
             let guessInput = document.getElementById("guessInput");
